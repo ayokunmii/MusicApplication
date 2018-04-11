@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">Music Application</string>
+    <string name="artist1">Rihanna</string>
+    <string name="artist2">Justine Skye</string>
+    <string name="artist3">Beyoncé</string>
+    <string name="artist4">Tiwa Savage</string>
+    <string name="artist5">Jhené Aiko</string>
+    <string name="artist6">SZA</string>
+    <string name="artist7">H.E.R</string>
+    <string name="artist1_song1">Higher</string>
+    <string name="artist1_song2">Work</string>
+    <string name="artist1_song3">Rude Boy</string>
+    <string name="artist1_song4">We Found Love</string>
+    <string name="artist1_album_1_2">ANTI</string>
+    <string name="artist1_album_4">Talk That Talk</string>
+    <string name="artist1_album_3">Rated R</string>
+    <string name="artist2_song1">Jezebel</string>
+    <string name="artist2_song2">Bandit</string>
+    <string name="artist2_song3">I\'m Yours</string>
+    <string name="artist2_song4">Fun</string>
+    <string name="artist2_album_1_4">8 Ounces</string>
+    <string name="artist2_album_2_3">Emotionally Unavailable</string>
+    <string name="artist3_song1">End of Time</string>
+    <string name="artist3_song2">Love On Top</string>
+    <string name="artist3_song3">Ring The Alarm</string>
+    <string name="artist3_song4">Drunk In Love</string>
+    <string name="artist3_album_1_2">4</string>
+    <string name="artist3_album_3">B\'Day</string>
+    <string name="artist3_album_4">BEYONCÉ</string>
+    <string name="artist4_song1">Bad ft Wizkid</string>
+    <string name="artist4_song2">Ma Lo</string>
+    <string name="artist4_song3">Kele Kele</string>
+    <string name="artist4_song4">Without My Heart ft Don Jazzy</string>
+    <string name="artist4_album_1">R.E.D</string>
+    <string name="artist4_album_2">Sugarcane</string>
+    <string name="artist4_album_3_4">Once Upon A Time</string>
+    <string name="artist5_song1">The Worst</string>
+    <string name="artist5_song2">Sativa</string>
+    <string name="artist5_song3">Bed Peace</string>
+    <string name="artist5_song4">Maniac</string>
+    <string name="artist5_album_1_3">Sail Out</string>
+    <string name="artist5_album_2">Trip</string>
+    <string name="artist5_album_4">Maniac</string>
+    <string name="now_playing">Now Playing</string>
+
+</resources>
