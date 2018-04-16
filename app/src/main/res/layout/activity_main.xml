@@ -71,6 +71,7 @@ android:background="@color/backgorund"
         android:layout_marginTop="20dp">
 
         <ImageView
+            android:id="@+id/rewind_button"
             style="@style/main_page_buttons"
             android:src="@drawable/rewind_button"/>
         <ImageView
@@ -79,6 +80,7 @@ android:background="@color/backgorund"
             style="@style/main_page_buttons"
             />
         <ImageView
+            android:id="@+id/fast_forward_button"
             style="@style/main_page_buttons"
             android:src="@drawable/fast_forward_button"/>
 
