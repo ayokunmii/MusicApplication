@@ -29,6 +29,7 @@ import static com.example.android.musicapplication.SharedVariables.isPlaying;
 import static com.example.android.musicapplication.SharedVariables.noSong;
 import static com.example.android.musicapplication.SharedVariables.playbutton;
 import static com.example.android.musicapplication.SharedVariables.rewind;
+import static com.example.android.musicapplication.SharedVariables.songArt;
 import static com.example.android.musicapplication.SharedVariables.songName;
 import static com.example.android.musicapplication.SharedVariables.artistName;
 import static com.example.android.musicapplication.SharedVariables.songStatus;
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         rewind = (ImageView) findViewById(R.id.rewind_button);
         //this is used to shuffle songs
         random = new Random();
-
+        isPlaying = false;
 
         //populating arraylist with our songs!
         song = new ArrayList<Songs>();
@@ -129,31 +130,52 @@ public class MainActivity extends AppCompatActivity {
        Intent intent = getIntent();
         final Bundle bundle = intent.getExtras();
         if (bundle != null) {
+            String s = bundle.getString(SONG_NAME);
+            String a = bundle.getString(ARTIST);
+            String b = bundle.getString(STATUS);
+
 
             Bitmap bmp = (Bitmap) bundle.getParcelable(SONG_ART);
 
+            nameOfSong.setText(String.valueOf(s));
+            nameOfArtist.setText(String.valueOf(a));
+            songStatus.setText(String.valueOf(b));
             AlbumArt.setImageBitmap(bmp);
             AlbumArt.setTag(bmp);
 
 
+
+            if (!isPlaying) {
+                playButton.setImageResource(R.drawable.pause_button);
+                playButton.setTag(R.drawable.pause_button);
+                isPlaying = true;
+            } else {
+                playButton.setImageResource(R.drawable.play_button);
+                playButton.setTag(R.drawable.play_button);
+                isPlaying = false;
+            }
+
+
         }
 
 
-        if (songName != null && artistName != null && playbutton.getTag() != null  ){
+     /*   if (songName != null && artistName != null && playbutton.getTag() != null  ){
 
             nameOfSong.setText(songName.getText());
             nameOfArtist.setText(artistName.getText());
             songStatus.setText(R.string.now_playing);
-           playButton.setImageResource((Integer) playbutton.getTag());
+          // playButton.setImageResource((Integer) playbutton.getTag());
+
         }
+*/
 
 
 
 
-        isPlaying = false;
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "isPlaying -  " + isPlaying, Toast.LENGTH_SHORT).show();
                    if (!isPlaying && songName != null ) {
                        playButton.setImageResource(R.drawable.pause_button);
                       playButton.setTag(R.drawable.pause_button);
@@ -212,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent artistsIntent = new Intent(MainActivity.this, ArtistsActivity.class);
-                if (songName != null && artistName != null){
+                //if (songName != null && artistName != null){
 
                 AlbumArt.buildDrawingCache();
                 Bitmap image= AlbumArt.getDrawingCache();
@@ -230,11 +252,15 @@ public class MainActivity extends AppCompatActivity {
 
 
                 artistsIntent.putExtras(bundle);
-                }
+                 //   startActivity(artistsIntent);
+               // }
                 startActivity(artistsIntent);
+
                 finish();
             }
         });
+
+
 
         final ImageView albums = (ImageView) findViewById(R.id.albums_page);
         albums.setOnClickListener(new View.OnClickListener() {

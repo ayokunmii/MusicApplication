@@ -300,12 +300,17 @@ playerBar.setOnClickListener(new View.OnClickListener() {
         Bundle bundle = new Bundle();
         bundle.putParcelable(SONG_ART, image);
 
+        homePage.putExtra(SONG_NAME, songName.getText().toString());
+        homePage.putExtra(ARTIST, artistName.getText().toString());
+        homePage.putExtra(STATUS, songStatus.getText().toString());
+        homePage.putExtra(PLAYBUTTON, isPlaying);
         homePage.putExtra(SONG_ART,bundle);
+
 
         homePage.putExtras(bundle);
 
         startActivity(homePage);
-
+        Toast.makeText(ArtistsActivity.this, "isPlaying -  " + isPlaying, Toast.LENGTH_SHORT).show();
         Toast.makeText(ArtistsActivity.this, "Song Name & artist's is " + songName.getText().toString() +
                 artistName.getText().toString(), Toast.LENGTH_SHORT).show();
         finish();

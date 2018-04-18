@@ -303,12 +303,17 @@ public class AlbumsActivity extends AppCompatActivity  {
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(SONG_ART, image);
 
+                homePage.putExtra(SONG_NAME, songName.getText().toString());
+                homePage.putExtra(ARTIST, artistName.getText().toString());
+                homePage.putExtra(STATUS, songStatus.getText().toString());
+                homePage.putExtra(PLAYBUTTON, isPlaying);
                 homePage.putExtra(SONG_ART,bundle);
+
 
                 homePage.putExtras(bundle);
                     startActivity(homePage);
                     finish();
-
+                Toast.makeText(AlbumsActivity.this, "isPlaying -  " + isPlaying, Toast.LENGTH_SHORT).show();
 
             }
         });

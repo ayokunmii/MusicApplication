@@ -283,8 +283,13 @@ public class SongsActivity extends AppCompatActivity {
                 Bundle bundle = new Bundle();
                 bundle.putParcelable(SONG_ART, image);
 
+                homePage.putExtra(SONG_NAME, songName.getText().toString());
+                homePage.putExtra(ARTIST, artistName.getText().toString());
+                homePage.putExtra(STATUS, songStatus.getText().toString());
+                homePage.putExtra(PLAYBUTTON, isPlaying);
                 homePage.putExtra(SONG_ART,bundle);
 
+                Toast.makeText(SongsActivity.this, "isPlaying -  " + isPlaying, Toast.LENGTH_SHORT).show();
                 homePage.putExtras(bundle);
                 startActivity(homePage);
             }
