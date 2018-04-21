@@ -22,6 +22,8 @@ import java.util.Comparator;
 
 import static com.example.android.musicapplication.SharedVariables.ARTIST;
 import static com.example.android.musicapplication.SharedVariables.PLAYBUTTON;
+import static com.example.android.musicapplication.SharedVariables.POSITION;
+import static com.example.android.musicapplication.SharedVariables.PictureSource;
 import static com.example.android.musicapplication.SharedVariables.SONG_ART;
 import static com.example.android.musicapplication.SharedVariables.SONG_NAME;
 import static com.example.android.musicapplication.SharedVariables.STATUS;
@@ -159,17 +161,22 @@ public class AlbumsActivity extends AppCompatActivity  {
         if (bundle != null){
             //setting this to false to make playerBar active
             noSong = false;
+
+            position = bundle.getInt(POSITION);
             String s = bundle.getString(SONG_NAME);
             String a = bundle.getString(ARTIST);
             String b = bundle.getString(STATUS);
-            Bitmap bmp = (Bitmap) bundle.getParcelable(SONG_ART);
+            int p = bundle.getInt(SONG_ART);
+            Log.i("Artists","the value of p is " + p);
+
 
 
             songName.setText(String.valueOf(s));
             artistName.setText(String.valueOf(a));
             songStatus.setText(String.valueOf(b));
-            songArt.setImageBitmap(bmp);
-            songArt.setTag(bmp);
+            songArt.setImageResource(p);
+            songArt.setTag(p);
+
 
             // setting player bar buttons to respond to changes within the activity
             if (isPlaying && !noSong) {
@@ -243,6 +250,7 @@ public class AlbumsActivity extends AppCompatActivity  {
                 playbutton.setImageResource(R.drawable.pause_button);
                 playbutton.setTag(R.drawable.pause_button);
                 songStatus.setText(R.string.now_playing);
+                PictureSource = song.get(position).getmArt();
 
                 // setting player bar buttons to respond to changes within the activity
                 for (int j = 0; j<buttons.length; j++){
@@ -270,6 +278,7 @@ public class AlbumsActivity extends AppCompatActivity  {
                     artistName.setText(String.valueOf(song.get(position).getmArtist()));
                     songArt.setImageResource(song.get(position).getmArt());
                     songArt.setTag(song.get(position).getmArt());
+                    PictureSource = song.get(position).getmArt();
 
                 }
             }
@@ -281,11 +290,11 @@ public class AlbumsActivity extends AppCompatActivity  {
                 if (position > 0 && songName != null && artistName != null &&
                         playbutton.getTag() != null &&  !noSong){
                     position --;
-                    Toast.makeText(AlbumsActivity.this, "position " + position, Toast.LENGTH_SHORT);
                     songName.setText(String.valueOf(song.get(position).getmSongName()));
                     artistName.setText(String.valueOf(song.get(position).getmArtist()));
                     songArt.setImageResource(song.get(position).getmArt());
                     songArt.setTag(song.get(position).getmArt());
+                    PictureSource = song.get(position).getmArt();
                 }
             }
         });
@@ -298,22 +307,22 @@ public class AlbumsActivity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                     Intent homePage = new Intent(AlbumsActivity.this, MainActivity.class);
-                songArt.buildDrawingCache();
-                Bitmap image= songArt.getDrawingCache();
                 Bundle bundle = new Bundle();
-                bundle.putParcelable(SONG_ART, image);
+                homePage.putExtra(SONG_ART,PictureSource);
+                homePage.putExtra(POSITION, position);
 
                 homePage.putExtra(SONG_NAME, songName.getText().toString());
                 homePage.putExtra(ARTIST, artistName.getText().toString());
                 homePage.putExtra(STATUS, songStatus.getText().toString());
                 homePage.putExtra(PLAYBUTTON, isPlaying);
-                homePage.putExtra(SONG_ART,bundle);
 
 
                 homePage.putExtras(bundle);
-                    startActivity(homePage);
-                    finish();
-                Toast.makeText(AlbumsActivity.this, "isPlaying -  " + isPlaying, Toast.LENGTH_SHORT).show();
+
+                startActivity(homePage);
+
+                finish();
+                Toast.makeText(AlbumsActivity.this, " NOW PLAYING " , Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -324,17 +333,15 @@ public class AlbumsActivity extends AppCompatActivity  {
 
                 Intent artistsIntent = new Intent(AlbumsActivity.this, ArtistsActivity.class);
 
-                songArt.buildDrawingCache();
-                Bitmap image= songArt.getDrawingCache();
                 Bundle bundle = new Bundle();
-                bundle.putParcelable(SONG_ART, image);
-
+                artistsIntent.putExtra(SONG_ART,PictureSource);
+                artistsIntent.putExtra(POSITION, position);
 
                 artistsIntent.putExtra(SONG_NAME, songName.getText().toString());
                 artistsIntent.putExtra(ARTIST, artistName.getText().toString());
                 artistsIntent.putExtra(STATUS, songStatus.getText().toString());
                 artistsIntent.putExtra(PLAYBUTTON, isPlaying);
-                artistsIntent.putExtra(SONG_ART, bundle);
+
 
 
 
@@ -342,7 +349,7 @@ public class AlbumsActivity extends AppCompatActivity  {
 
                 startActivity(artistsIntent);
                 finish();
-
+                Toast.makeText(AlbumsActivity.this, " ARTISTS " , Toast.LENGTH_SHORT).show();
 
 
             }
@@ -354,22 +361,22 @@ public class AlbumsActivity extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 Intent songsIntent = new Intent(AlbumsActivity.this,SongsActivity.class);
-                songArt.buildDrawingCache();
-                Bitmap image= songArt.getDrawingCache();
                 Bundle bundle = new Bundle();
-                bundle.putParcelable(SONG_ART, image);
+                songsIntent.putExtra(SONG_ART,PictureSource);
+                songsIntent.putExtra(POSITION, position);
 
 
                 songsIntent.putExtra(SONG_NAME, songName.getText().toString());
                 songsIntent.putExtra(ARTIST, artistName.getText().toString());
                 songsIntent.putExtra(STATUS, songStatus.getText().toString());
                 songsIntent.putExtra(PLAYBUTTON, isPlaying);
-                songsIntent.putExtra(SONG_ART, bundle);
+
 
 
                 songsIntent.putExtras(bundle);
                 startActivity(songsIntent);
                 finish();
+                Toast.makeText(AlbumsActivity.this, " ALL SONGS " , Toast.LENGTH_SHORT).show();
             }
         });
 

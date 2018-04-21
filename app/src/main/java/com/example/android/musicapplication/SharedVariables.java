@@ -16,6 +16,7 @@ public class SharedVariables extends AppCompatActivity {
     public static final String PLAYBUTTON = "button";
     public static final String STATUS = "status";
     public static final String SONG = "array";
+    public static final String POSITION = "position";
 
     static TextView songName;
     static TextView artistName;
@@ -27,6 +28,7 @@ public class SharedVariables extends AppCompatActivity {
     static ImageView fastForward;
     static ImageView rewind;
     static TextView songStatus;
+    static int PictureSource;
 
 
 }
